@@ -2,7 +2,7 @@ package main
 
 import "database/sql"
 
-func ScanMap(rows * sql.Rows) (map[string]sql.NullString, error) {
+func ScanMap(rows *sql.Rows) (map[string]sql.NullString, error) {
 
 	columns, err := rows.Columns()
 

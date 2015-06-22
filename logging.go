@@ -1,15 +1,14 @@
 package main
 
 import (
+	"errors"
+	"fmt"
+	"io"
 	"log/syslog"
 	"os"
-	"io"
-	"fmt"
-	"errors"
 )
 
 type SystemLogger interface {
-
 	Emerg(string) error
 	Crit(string) error
 	Alert(string) error
@@ -69,7 +68,7 @@ func (logger *WriterSystemLogger) Debug(message string) error {
 }
 
 func CreateLogger(out string) (SystemLogger, error) {
-	
+
 	switch out {
 
 	case "stdio":

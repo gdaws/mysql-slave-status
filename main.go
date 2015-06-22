@@ -1,11 +1,11 @@
 package main
 
-import(
+import (
 	"database/sql"
-	_ "github.com/go-sql-driver/mysql"
-	"os"
-	"log"
 	"errors"
+	_ "github.com/go-sql-driver/mysql"
+	"log"
+	"os"
 	"strings"
 )
 
@@ -36,7 +36,7 @@ func main() {
 	}
 
 	db, err := OpenDatabaseConnection(mainConfig.Connection.String())
-	
+
 	if err != nil {
 		logger.Alert(err.Error())
 		log.Fatal(err)
@@ -62,7 +62,7 @@ func main() {
 	var logStatus func(string)
 
 	if strings.ToLower(slaveIORunning.String) == "yes" {
-		
+
 		logStatus = func(message string) {
 			logger.Info(message)
 		}
@@ -70,7 +70,7 @@ func main() {
 	} else {
 
 		logStatus = func(message string) {
-			logger.Alert(message)		
+			logger.Alert(message)
 		}
 	}
 

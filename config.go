@@ -1,19 +1,19 @@
 package main
 
 import (
-	"os"
-	"os/user"
 	"encoding/json"
 	"flag"
+	"os"
+	"os/user"
 )
 
 type MainConfig struct {
 	Connection TCPDSN
-	Logging string
+	Logging    string
 }
 
 func NewMainConfig() (*MainConfig, error) {
-	
+
 	usr, err := user.Current()
 
 	if err != nil {
@@ -23,12 +23,12 @@ func NewMainConfig() (*MainConfig, error) {
 		}
 	}
 
-	return &MainConfig {
+	return &MainConfig{
 		Connection: TCPDSN{
-			Hostname: "127.0.0.1",
-			Port: 3306,
-			Username: usr.Username,
-			Password: "",
+			Hostname:  "127.0.0.1",
+			Port:      3306,
+			Username:  usr.Username,
+			Password:  "",
 			Collation: "utf8_general_ci",
 		},
 		Logging: "stdio",
@@ -60,7 +60,7 @@ func (config *MainConfig) LoadConfigFiles(filename string, searchPaths []string)
 
 	for _, filepath := range FindFile(filename, searchPaths) {
 
-		err :=  config.loadConfigFile(filepath)
+		err := config.loadConfigFile(filepath)
 
 		if err != nil {
 			return err
@@ -80,7 +80,7 @@ func (config *MainConfig) LoadCommandLineArgs() error {
 
 	flag.StringVar(&config.Connection.Database, "database", config.Connection.Database, "database")
 	flag.StringVar(&config.Connection.Collation, "collation", config.Connection.Collation, "collation used")
-	
+
 	flag.StringVar(&config.Logging, "logging", config.Logging, "logging destination")
 
 	flag.Parse()

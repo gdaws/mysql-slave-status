@@ -1,8 +1,8 @@
 package main
 
 import (
-	"path"
 	"os"
+	"path"
 )
 
 func FindFile(filename string, searchPaths []string) []string {
