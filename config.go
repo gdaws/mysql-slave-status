@@ -81,6 +81,8 @@ func (config *MainConfig) LoadCommandLineArgs() error {
 	flag.StringVar(&config.Connection.Database, "database", config.Connection.Database, "database")
 	flag.StringVar(&config.Connection.Collation, "collation", config.Connection.Collation, "collation used")
 	
+	flag.StringVar(&config.Logging, "logging", config.Logging, "logging destination")
+
 	flag.Parse()
 
 	return nil
