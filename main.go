@@ -64,7 +64,7 @@ func main() {
 	if strings.ToLower(slaveIORunning.String) == "Yes" {
 		
 		logStatus = func(message string) {
-			logger.Alert(message)
+			logger.Info(message)
 		}
 
 	} else {
